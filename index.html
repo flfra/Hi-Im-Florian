@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Florian's Fun Page</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    function toggleSection(id) {
+      document.querySelectorAll('.section-content').forEach(section => {
+        if (section.id !== id) {
+          section.style.display = 'none';
+        }
+      });
+      const section = document.getElementById(id);
+      section.style.display = section.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Hi, I'm Florian <span>(he/him) :)</span></h1>
+    <p>I AM...</p>
+    <ul>
+      <li>22 years old</li>
+      <li>a B.Sc. in Climate Change Mitigation and Adaptation</li>
+      <li>heterosexual :(</li>
+      <li>a Scorpio (if that's relevant)</li>
+      <li>single</li>
+      <li>blessed with and plagued by raging ADHD and moderate autism (self-diagnosed)</li>
+    </ul>
+  </header>
+
+  <main>
+    <nav>
+      <button onclick="toggleSection('love')">I LOVE</button>
+      <button onclick="toggleSection('dislike')">I DISLIKE</button>
+      <button onclick="toggleSection('talk')">TALK TO ME ABOUT</button>
+      <button onclick="toggleSection('media')">MEDIA I ENJOY</button>
+      <button onclick="toggleSection('reviews')">RATINGS AND REVIEWS</button>
+      <button onclick="toggleSection('contact')">CONTACT</button>
+    </nav>
+
+    <section id="love" class="section-content">
+      <h2>I LOVE...</h2>
+      <ul>
+        <li>my friends</li>
+        <li>my cat, Henry Edward Glitter-Fairy (the 3rd)</li>
+        <li>Reading</li>
+        <li>Stargazing</li>
+        <li>Spending quality time</li>
+        <li>Physical touch (platonic & romantic)</li>
+        <li>Being high in the comfort of my own home</li>
+        <li>Quoting song lyrics containing words/phrases that have just been said</li>
+        <li>Changing my hair style every 3 weeks or so (thanks to my amazing roomies)</li>
+        <li>Balcony bed</li>
+      </ul>
+    </section>
+
+    <section id="dislike" class="section-content">
+      <h2>I DISLIKE...</h2>
+      <ul>
+        <li>Calling oneself an entrepreneur</li>
+        <li>The words 'Masterclass', 'Networking' and 'Mindset'</li>
+        <li>Dusting</li>
+        <li>Fascists</li>
+        <li>'Live action' remakes of good animated movies/shows (e.g. ATLA, HTTYD)</li>
+      </ul>
+    </section>
+
+    <section id="talk" class="section-content">
+      <h2>TALK TO ME ABOUT...</h2>
+      <ul>
+        <li>The Ratatouille soundtrack</li>
+        <li>The global resurgence of fascism</li>
+        <li>Any of your special interests</li>
+        <li>What you remember about your 18th birthday</li>
+        <li>Whether you'd rather pee out of the window or into the kitchen sink</li>
+        <li>When/where you feel most at home</li>
+      </ul>
+    </section>
+
+    <section id="media" class="section-content">
+      <h2>SOME MEDIA I ENJOY...</h2>
+      <ul>
+        <li><strong>Shows:</strong> ATLA, Phineas and Ferb</li>
+        <li><strong>Movies:</strong> The Grand Budapest Hotel, Ratatouille</li>
+        <li><strong>Music:</strong> Casiopea, Charli xcx, Pitbull, Lady Gaga</li>
+        <li><strong>Books:</strong> ATLA novels</li>
+      </ul>
+    </section>
+
+    <section id="reviews" class="section-content">
+      <h2>RATINGS AND REVIEWS...</h2>
+      <div class="review-list">
+        <div class="review"><strong>Jonathan R.</strong> <em>(long time friend)</em> <div class="stars">⭐⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Anouk E.</strong> <em>(long time friend & 6th grade gf)</em> <div class="stars">⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Pia D.</strong> <em>(Close friend & roomie)</em> <div class="stars">⭐⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Jil P.</strong> <em>(Close friend & roomie)</em> <div class="stars">⭐⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Henry G.</strong> <em>(cat)</em> <div class="stars">⭐⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Petra F.</strong> <em>(mother)</em> <div class="stars">⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Viola F.</strong> <em>(sister)</em> <div class="stars">⭐⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Linus D.</strong> <em>(close friend)</em> <div class="stars">⭐⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Lara S.</strong> <em>(close friend)</em> <div class="stars">⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+        <div class="review"><strong>Katharina L.</strong> <em>(close friend)</em> <div class="stars">⭐⭐⭐⭐⭐</div> <textarea placeholder="Write a review..."></textarea></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-content">
+      <h2>CONTACT</h2>
+      <p>Find me on Instagram: <a href="https://instagram.com/yourusername" target="_blank">@yourusername</a></p>
+      <form action="https://formsubmit.co/your@email.com" method="POST">
+        <input type="email" name="email" placeholder="Your email" required style="margin-bottom: 0.5rem; width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc;">
+        <textarea name="message" placeholder="Your message" required style="width: 100%; height: 100px; padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 0.5rem;"></textarea>
+        <button type="submit" style="background: #4db6ac; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: bold;">Send</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
