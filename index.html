@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hi, I'm Florian</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <script>
+  function toggleSection(sectionId) {
+    // Get all sections
+    const sections = document.querySelectorAll('.section-content');
+    
+    // Hide all sections
+    sections.forEach(section => {
+      if (section.id !== sectionId) {
+        section.style.display = "none";
+      }
+    });
+
+    // Toggle the clicked section
+    const section = document.getElementById(sectionId);
+    if (section.style.display === "block") {
+      section.style.display = "none";
+    } else {
+      section.style.display = "block";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const reviews = document.querySelectorAll(".review");
+
+  reviews.forEach(review => {
+    const reviewId = review.getAttribute("data-id");
+    const likeButton = review.querySelector(".like-button");
+    const dislikeButton = review.querySelector(".dislike-button");
+    const likeIcon = likeButton.querySelector("i");
+    const dislikeIcon = dislikeButton.querySelector("i");
+    const likeCount = review.querySelector(".like-count");
+    const dislikeCount = review.querySelector(".dislike-count");
+
+    // Load saved state and counts from localStorage
+    const savedState = localStorage.getItem(`${reviewId}-state`);
+    const savedLikeCount = parseInt(localStorage.getItem(`${reviewId}-likes`) || 0);
+    const savedDislikeCount = parseInt(localStorage.getItem(`${reviewId}-dislikes`) || 0);
+
+    likeCount.textContent = savedLikeCount;
+    dislikeCount.textContent = savedDislikeCount;
+
+    if (savedState === "liked") {
+      likeButton.classList.add("active");
+      likeIcon.classList.replace("far", "fas");
+    } else if (savedState === "disliked") {
+      dislikeButton.classList.add("active");
+      dislikeIcon.classList.replace("far", "fas");
+    }
+
+    // Like button click event
+    likeButton.addEventListener("click", () => {
+      let likes = parseInt(likeCount.textContent);
+      let dislikes = parseInt(dislikeCount.textContent);
+
+      if (!likeButton.classList.contains("active")) {
+        // User likes the review
+        likeButton.classList.add("active");
+        dislikeButton.classList.remove("active");
+        likeIcon.classList.replace("far", "fas");
+        dislikeIcon.classList.replace("fas", "far");
+
+        likes++;
+        if (dislikeButton.classList.contains("active")) {
+          dislikes--;
+        }
+
+        localStorage.setItem(`${reviewId}-state`, "liked");
+      } else {
+        // User removes their like
+        likeButton.classList.remove("active");
+        likeIcon.classList.replace("fas", "far");
+
+        likes--;
+        localStorage.removeItem(`${reviewId}-state`);
+      }
+
+      // Update counts
+      likeCount.textContent = likes;
+      dislikeCount.textContent = dislikes;
+
+      // Save counts to localStorage
+      localStorage.setItem(`${reviewId}-likes`, likes);
+      localStorage.setItem(`${reviewId}-dislikes`, dislikes);
+    });
+
+    // Dislike button click event
+    dislikeButton.addEventListener("click", () => {
+      let likes = parseInt(likeCount.textContent);
+      let dislikes = parseInt(dislikeCount.textContent);
+
+      if (!dislikeButton.classList.contains("active")) {
+        // User dislikes the review
+        dislikeButton.classList.add("active");
+        likeButton.classList.remove("active");
+        dislikeIcon.classList.replace("far", "fas");
+        likeIcon.classList.replace("fas", "far");
+
+        dislikes++;
+        if (likeButton.classList.contains("active")) {
+          likes--;
+        }
+
+        localStorage.setItem(`${reviewId}-state`, "disliked");
+      } else {
+        // User removes their dislike
+        dislikeButton.classList.remove("active");
+        dislikeIcon.classList.replace("fas", "far");
+
+        dislikes--;
+        localStorage.removeItem(`${reviewId}-state`);
+      }
+
+      // Update counts
+      likeCount.textContent = likes;
+      dislikeCount.textContent = dislikes;
+
+      // Save counts to localStorage
+      localStorage.setItem(`${reviewId}-likes`, likes);
+      localStorage.setItem(`${reviewId}-dislikes`, dislikes);
+    });
+  });
+});
+</script>
+</head>
+<body>
+  <header>
+    <img src="images/dog_square.jpg" alt="Dog" class="header-dog-img-top" />
+    <h1 class="sticky-title">Hi, I'm Florian (he/him) <span> :)</span></h1>
+    <p>I AM...</p>
+    <ul class="alternate-align">
+      <li>22 years old</li>
+      <li>a B.Sc. in Climate Change Mitigation and Adaptation</li>
+      <li>heterosexual :(</li>
+      <li>a Scorpio (if that's relevant)</li>
+      <li>single</li>
+      <li>blessed with and plagued by raging ADHD and moderate autism (self-diagnosed)</li>
+    </ul>
+  </header>
+
+  <main>
+    <nav>
+      <button onclick="toggleSection('love')">I LOVE</button>
+      <section id="love" class="section-content">
+        <img src="images/hair.jpg" alt="Hair" class="section-bg-img" />
+        <h2>I LOVE...</h2>
+        <ul>
+          <li>my friends</li>
+          <li>my cat, Henry Edward Glitter-Fairy (the 3rd)</li>
+          <li>reading</li>
+          <li>spending quality time</li>
+          <li>stargazing</li>
+          <li>physical touch (platonic & romantic)</li>
+          <li>being high in the comfort of my own home</li>
+          <li>quoting song lyrics containing words/phrases that have just been said</li>
+          <li>changing my hair style every 3 weeks or so (thanks to my amazing roomies)</li>
+          <li>balcony bed</li>
+        </ul>
+      </section>
+
+      <button onclick="toggleSection('dislike')">I DISLIKE</button>
+      <section id="dislike" class="section-content">
+        <img src="images/drinks.jpg" alt="Drinks" class="section-bg-img" />
+        <h2>I DISLIKE...</h2>
+        <ul>
+          <li>fascists</li>
+          <li>calling oneself an entrepreneur</li>
+          <li>the words 'masterclass', 'networking' and 'mindset'</li>
+          <li>dusting</li>
+          <li>'live action' remakes of good animated movies/shows (e.g. ATLA, HTTYD)</li>
+        </ul>
+      </section>
+
+      <button onclick="toggleSection('talk')">TALK TO ME ABOUT</button>
+      <section id="talk" class="section-content">
+        <div class="talk-text">
+            <h2>TALK TO ME ABOUT...</h2>
+        </div>
+        <div class="talk-flex">
+          <img src="images/cycling.jpg" alt="Cycling" class="talk-img" />
+          <div class="talk-text"></div>
+            <ul>
+              <li>the Ratatouille soundtrack</li>
+              <li>the global resurgence of fascism</li>
+              <li>any of your special interests</li>
+              <li>what you remember about your 18th birthday</li>
+              <li>whether you'd rather pee out of the window or into the kitchen sink</li>
+              <li>when/where you feel most at home</li>
+            </ul>
+      </section>
+
+      <button onclick="toggleSection('media')">MEDIA I ENJOY</button>
+      <section id="media" class="section-content">
+        <h2>SOME MEDIA I ENJOY...</h2>
+        <ul>
+          <li><strong>shows:</strong> ATLA, Phineas and Ferb</li>
+          <li><strong>movies:</strong> The Grand Budapest Hotel, Ratatouille</li>
+          <li><strong>music:</strong> Casiopea, Charli xcx, Pitbull, Lady Gaga</li>
+          <li><strong>books:</strong> ATLA novels</li>
+        </ul>
+      </section>
+
+      <button onclick="toggleSection('reviews')">RATINGS AND REVIEWS</button>
+      <section id="reviews" class="section-content">
+        <h2>RATINGS AND REVIEWS...</h2>
+        <div class="review-list">
+          <div class="review" data-id="review-1">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Jonathan R.</strong>
+          <p class="review-meta">long time friend</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-2">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐</div>
+            <h3>Consectetur adipiscing elit</h3>
+          </div>
+          <strong>Anouk E.</strong>
+          <p class="review-meta">long time friend & 6th grade gf</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-3">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Pia D.</strong>
+          <p class="review-meta">Close friend & roomie</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-4">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Jil P.</strong>
+          <p class="review-meta">Close friend & roomie</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-5">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Henry G.</strong>
+          <p class="review-meta">cat</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-6">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Petra F.</strong>
+          <p class="review-meta">mother</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-7">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Viola F.</strong>
+          <p class="review-meta">sister</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-8">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Linus D.</strong>
+          <p class="review-meta">close friend</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-9">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Lara S.</strong>
+          <p class="review-meta">close friend</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+        <div class="review" data-id="review-10">
+          <div class="review-header">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <h3>Lorem ipsum dolor sit amet</h3>
+          </div>
+          <strong>Katharina L.</strong>
+          <p class="review-meta">close friend</p>
+          <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+          <div class="review-actions">
+            <button class="like-button"><i class="far fa-thumbs-up"></i></button>
+            <span class="like-count">0</span>
+            <button class="dislike-button"><i class="far fa-thumbs-down"></i></button>
+            <span class="dislike-count">0</span>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <button onclick="toggleSection('contact')">CONTACT</button>
+      <section id="contact" class="section-content">
+        <h2>CONTACT</h2>
+        <p>Find me on Instagram: <a href="https://instagram.com/findefloh/" target="_blank">@findefloh</a></p>
+        <form action="https://formsubmit.co/your@email.com" method="POST">
+          <input type="email" name="email" placeholder="Your email" required style="margin-bottom: 0.5rem; width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc;">
+          <textarea name="message" placeholder="Your message" required style="width: 100%; height: 100px; padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 0.5rem;"></textarea>
+          <button type="submit" style="background: #4db6ac; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: bold;">Send</button>
+        </form>
+      </section>
+    </nav>
+  </main>
+</body>
+</html>
